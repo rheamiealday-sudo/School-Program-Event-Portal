@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>School Event Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Event Management System</title>
     
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- QR Scanner Library -->
-    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 
 <body>
@@ -16,224 +15,312 @@
     <div class="bg-image left-bg"></div>
     <div class="bg-image right-bg"></div>
 
-    <h1>School Program & Event Portal</h1>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="button-container">
-            <button onclick="showSection('home')">Home</button>
-            <button onclick="showSection('schedule')">Program Scheduling</button>
-            <button onclick="showSection('participants')">Participants</button>
-            <button onclick="showSection('venue')">Venue Setup</button>
-            <button onclick="showSection('announcement')">Announcement</button>
-            <button onclick="showSection('login')">Attendance 🔐</button>
+    <!-- ================= SIDEBAR NAVIGATION ================= -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>🏫 School Portal</h2>
         </div>
-    </nav>
-
-    <!-- ================= HOME ================= -->
-<div id="home" class="section active">
-
-    <div class="home-container">
-
-        <!-- IMAGE -->
-        <div class="home-image">
-            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=900&h=500&fit=crop"
-                 alt="School Event">
-        </div>
-
-        <!-- TEXT CONTENT -->
-        <div class="home-content">
-            <h2>🎉 Welcome to the School Program & Event Portal</h2>
-
-            <p>
-                This portal is designed to help students, teachers, and organizers
-                manage school programs and events efficiently.
-            </p>
-
-            <p>
-                You can view event schedules, manage participants, check venue
-                preparations, read announcements, and record attendance using
-                QR code technology.
-            </p>
-
-            <p class="home-note">
-                Select a menu above to begin managing your school event.
-            </p>
-        </div>
-
-    </div>
-
-</div>
-
-   <!-- ================= PROGRAM SCHEDULE ================= -->
-<div id="schedule" class="section">
-
-    <h2>📅 Program Schedule Calendar</h2>
-
-    <div class="calendar-container">
-
-        <!-- HEADER -->
-        <div class="calendar-header">
-            <button id="prevMonth" class="calendar-nav-btn">◀ Previous</button>
-            <h3 id="currentMonth"></h3>
-            <button id="nextMonth" class="calendar-nav-btn">Next ▶</button>
-        </div>
-
-        <!-- DAY LABELS -->
-        <div class="calendar-grid">
-            <div class="calendar-day-header">Sun</div>
-            <div class="calendar-day-header">Mon</div>
-            <div class="calendar-day-header">Tue</div>
-            <div class="calendar-day-header">Wed</div>
-            <div class="calendar-day-header">Thu</div>
-            <div class="calendar-day-header">Fri</div>
-            <div class="calendar-day-header">Sat</div>
-        </div>
-
-        <!-- CALENDAR DAYS -->
-        <div id="calendarDays" class="calendar-days"></div>
-
-    </div>
-
-    
-        
-        <div class="schedule-details">
-            <h3>📋 Event Details</h3>
-            <div id="eventDetails" class="event-details-box">
-                <p>Select a date to view events</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= PARTICIPANTS ================= -->
-<div id="participants" class="section">
-
-    <h2>👥 Participants Management</h2>
-
-    <!-- ADD PARTICIPANT CARD -->
-    <div class="participant-card">
-
-        <h3>➕ Add New Participant</h3>
-
-        <div class="participant-form">
-            <input type="text" id="participantName"
-                   placeholder="Participant Name"
-                   class="form-input">
-
-            <input type="text" id="participantSection"
-                   placeholder="Section"
-                   class="form-input">
-
-            <button onclick="addParticipant()" class="add-btn">
-                Add Participant
-            </button>
-        </div>
-
-    </div>
-
-    <!-- TABLE CARD -->
-    <div class="participant-table-card">
-
-        <h3>📋 Participants List</h3>
-
-        <table id="participantsTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Section</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody id="participantsBody"></tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-    <!-- VENUE -->
-    <div id="venue" class="section">
-        <h2>🏟️ Venue Setup</h2>
-        <ul>
-            <li>Stage ✔ Ready</li>
-            <li>Sound System ✔ Installed</li>
-            <li>Chairs ✔ Arranged</li>
+        <ul class="sidebar-menu">
+            <li><button onclick="showSection('dashboard')" class="active">📊 Dashboard</button></li>
+            <li><button onclick="showSection('schedule')">📅 Schedule</button></li>
+            <li><button onclick="showSection('participants')">👥 Participants</button></li>
+            <li><button onclick="showSection('venue')">🏟️ Venue</button></li>
+            <li><button onclick="showSection('announcement')">📢 Announcements</button></li>
+            <li><button onclick="showSection('login')">🔐 Attendance</button></li>
         </ul>
-    </div>
+    </aside>
 
-    <!-- ================= ANNOUNCEMENT ================= -->
-<div id="announcement" class="section">
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="main-content">
 
-    <h2>📢 Event Announcements</h2>
+        <!-- ================= DASHBOARD ================= -->
+        <div id="dashboard" class="section active">
+            <h2>🎉 Welcome to the Event Portal</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-box">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop" alt="Event 1">
+                    <div class="box-overlay">
+                        <h3>🎭 Cultural Program</h3>
+                        <p>March 15, 2026</p>
+                    </div>
+                </div>
+                <div class="dashboard-box">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop" alt="Event 2">
+                    <div class="box-overlay">
+                        <h3>🏆 Sports Day</h3>
+                        <p>March 20, 2026</p>
+                    </div>
+                </div>
+                <div class="dashboard-box">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=300&fit=crop" alt="Event 3">
+                    <div class="box-overlay">
+                        <h3>🎓 Graduation</h3>
+                        <p>April 5, 2026</p>
+                    </div>
+                </div>
+                <div class="dashboard-box">
+                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=400&h=300&fit=crop" alt="Event 4">
+                    <div class="box-overlay">
+                        <h3>🎨 Art Exhibition</h3>
+                        <p>April 10, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="announcement-container">
+        <!-- ================= PROGRAM SCHEDULE ================= -->
+        <div id="schedule" class="section">
+            <h2>📅 Digital Event Calendar</h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="calendar-nav-btn">◀ Previous</button>
+                    <h3 id="currentMonth"></h3>
+                    <button id="nextMonth" class="calendar-nav-btn">Next ▶</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                </div>
+                <div id="calendarDays" class="calendar-days"></div>
+            </div>
+            <div class="add-event-form">
+                <h3>➕ Add New Event</h3>
+                <div class="form-row">
+                    <input type="text" id="eventTitle" placeholder="Event Title" class="form-input">
+                    <input type="date" id="eventDate" class="form-input">
+                    <input type="text" id="eventTime" placeholder="Time" class="form-input">
+                    <button onclick="addEvent()" class="btn">Add Event</button>
+                </div>
+            </div>
+            <div class="schedule-details">
+                <h3>📋 Upcoming Events</h3>
+                <div id="eventDetails" class="event-details-box">
+                    <p>Select a date to view events</p>
+                </div>
+            </div>
+        </div>
 
-        <!-- ANNOUNCEMENT CARD -->
-        <div class="announcement-card">
+        <!-- ================= PARTICIPANTS ================= -->
+        <div id="participants" class="section">
+            <h2>👥 Participants Management</h2>
+            <div class="participant-card">
+                <h3>➕ Add New Participant</h3>
+                <div class="participant-form">
+                    <input type="text" id="participantName" placeholder="Participant Name" class="form-input">
+                    <input type="text" id="participantSection" placeholder="Section" class="form-input">
+                    <input type="text" id="participantGrade" placeholder="Grade Level" class="form-input">
+                    <button onclick="addParticipant()" class="btn">Add Participant</button>
+                </div>
+            </div>
+            <div class="participant-table-card">
+                <h3>📋 Participants List</h3>
+                <table id="participantsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Section</th>
+                            <th>Grade</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="participantsBody"></tbody>
+                </table>
+            </div>
+        </div>
 
-            <div class="announcement-image">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop"
-                     alt="School Event">
+        <!-- ================= VENUE ================= -->
+        <div id="venue" class="section">
+            <h2>🏟️ Venue Setup & Live Insights</h2>
+            <div class="venue-grid">
+                <div class="venue-card">
+                    <h3>🎤 Stage Setup</h3>
+                    <div class="venue-input">
+                        <label>Status:</label>
+                        <select id="stageStatus" class="form-input">
+                            <option value="Ready">✔ Ready</option>
+                            <option value="In Progress">⚙ In Progress</option>
+                            <option value="Pending">⏳ Pending</option>
+                        </select>
+                    </div>
+                    <div class="venue-input">
+                        <label>Notes:</label>
+                        <input type="text" id="stageNotes" placeholder="Add notes..." class="form-input">
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <h3>🔊 Sound System</h3>
+                    <div class="venue-input">
+                        <label>Status:</label>
+                        <select id="soundStatus" class="form-input">
+                            <option value="Installed">✔ Installed</option>
+                            <option value="Testing">⚙ Testing</option>
+                            <option value="Pending">⏳ Pending</option>
+                        </select>
+                    </div>
+                    <div class="venue-input">
+                        <label>Notes:</label>
+                        <input type="text" id="soundNotes" placeholder="Add notes..." class="form-input">
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <h3>🪑 Seating Arrangement</h3>
+                    <div class="venue-input">
+                        <label>Status:</label>
+                        <select id="seatingStatus" class="form-input">
+                            <option value="Arranged">✔ Arranged</option>
+                            <option value="In Progress">⚙ In Progress</option>
+                            <option value="Pending">⏳ Pending</option>
+                        </select>
+                    </div>
+                    <div class="venue-input">
+                        <label>Capacity:</label>
+                        <input type="number" id="seatingCapacity" placeholder="Number of chairs" class="form-input">
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <h3>🎬 Lighting & Visuals</h3>
+                    <div class="venue-input">
+                        <label>Status:</label>
+                        <select id="lightingStatus" class="form-input">
+                            <option value="Ready">✔ Ready</option>
+                            <option value="Testing">⚙ Testing</option>
+                            <option value="Pending">⏳ Pending</option>
+                        </select>
+                    </div>
+                    <div class="venue-input">
+                        <label>Notes:</label>
+                        <input type="text" id="lightingNotes" placeholder="Add notes..." class="form-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ANNOUNCEMENT ================= -->
+        <div id="announcement" class="section">
+            <h2>📢 Event Announcements</h2>
+            <div class="announcement-grid">
+                <div class="announcement-card">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop" alt="Announcement 1">
+                    <div class="announcement-content">
+                        <h3>🏫 School Program Practice</h3>
+                        <p class="announcement-date">📅 March 15, 2026</p>
+                        <p>All participants are required to attend the official program practice at the school gymnasium.</p>
+                        <p class="announcement-location">📍 School Covered Court | ⏰ 3:00 PM</p>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop" alt="Announcement 2">
+                    <div class="announcement-content">
+                        <h3>🎭 Cultural Night</h3>
+                        <p class="announcement-date">📅 March 20, 2026</p>
+                        <p>Join us for an evening of cultural performances by our talented students.</p>
+                        <p class="announcement-location">📍 School Auditorium | ⏰ 6:00 PM</p>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=300&fit=crop" alt="Announcement 3">
+                    <div class="announcement-content">
+                        <h3>🏆 Sports Day</h3>
+                        <p class="announcement-date">📅 April 5, 2026</p>
+                        <p>Come support our athletes in the annual sports competition.</p>
+                        <p class="announcement-location">📍 School Field | ⏰ 8:00 AM</p>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=400&h=300&fit=crop" alt="Announcement 4">
+                    <div class="announcement-content">
+                        <h3>🎨 Art Exhibition</h3>
+                        <p class="announcement-date">📅 April 10, 2026</p>
+                        <p>View the creative works of our art students in the main hall.</p>
+                        <p class="announcement-location">📍 Main Hall | ⏰ 10:00 AM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= LOGIN & ATTENDANCE ================= -->
+        <div id="login" class="section">
+            <h2>🔐 Teacher Login & Attendance</h2>
+            
+            <!-- Login Form -->
+            <div class="attendance-card">
+                <h3>Teacher Login</h3>
+                <div class="login-form">
+                    <input type="text" id="username" placeholder="Teacher Username" class="form-input">
+                    <input type="password" id="password" placeholder="Password" class="form-input">
+                    <button onclick="login()" class="login-btn">Login</button>
+                </div>
+                <p id="loginStatusMsg" style="margin-top: 10px; color: #e74c3c;"></p>
             </div>
 
-            <div class="announcement-content">
-                <h3>🏫 School Program Practice</h3>
+            <!-- Attendance Dashboard (Hidden until login) -->
+            <div id="attendanceDashboard" style="display: none;">
+                <div class="attendance-layout">
+                    <!-- Left Side: Teacher Subjects -->
+                    <div class="attendance-subjects">
+                        <h3>📚 Your Subjects</h3>
+                        <div class="subject-list">
+                            <div class="subject-item" onclick="showSection('attendance-math')">
+                                <span>📐 Mathematics</span>
+                                <small>Grade 10-A</small>
+                            </div>
+                            <div class="subject-item" onclick="showSection('attendance-science')">
+                                <span>🧪 Science</span>
+                                <small>Grade 10-B</small>
+                            </div>
+                            <div class="subject-item" onclick="showSection('attendance-english')">
+                                <span>📖 English</span>
+                                <small>Grade 10-C</small>
+                            </div>
+                            <div class="subject-item" onclick="showSection('attendance-history')">
+                                <span>📜 History</span>
+                                <small>Grade 10-D</small>
+                            </div>
+                        </div>
+                    </div>
 
-                <p class="announcement-date">
-                    📅 Scheduled Date: <strong>March 15, 2026</strong>
-                </p>
+                    <!-- Right Side: Attendance Form & List -->
+                    <div class="attendance-content">
+                        <div id="attendanceFormContainer" class="attendance-card">
+                            <h3>📝 Record Attendance</h3>
+                            <p style="margin-bottom: 15px; color: #666;">Logged in as: <strong id="displayTeacherName"></strong></p>
+                            
+                           <div class="participant-form">
+                             <input type="text" id="attLevel" placeholder="Level (e.g., Senior High)" class="form-input">
+                             <input type="text" id="attGrade" placeholder="Grade (e.g., Grade 11)" class="form-input">
+                             <input type="text" id="attSection" placeholder="Section (e.g., STEM-A)" class="form-input">
+                             <input type="text" id="attName" placeholder="Student Name" class="form-input">
+                                <button onclick="addAttendance()" class="btn">Record Attendance</button>
+                            </div>
+                        </div>
 
-                <p>
-                    All participants are required to attend the official
-                    program practice at the school gymnasium. Attendance
-                    will be recorded using the QR Attendance System.
-                </p>
-
-                <p class="announcement-location">
-                    📍 Venue: School Covered Court<br>
-                    ⏰ Time: 3:00 PM
-                </p>
+                        <div id="attendanceListContainer" class="attendance-card">
+                            <h3>📋 Attendance List (For <span id="listTeacherName"></span>)</h3>
+                            <table id="attendanceTable">
+                                <thead>
+                                    <tr>
+                                        <th>Section</th>
+                                        <th>Name</th>
+                                        <th>Grade</th>
+                                        <th>Teacher</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendanceBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
-    </div>
-
-</div>
-
-    <!-- LOGIN -->
-    <div id="login" class="section">
-        <h2>🔐 Teacher Login Required</h2>
-        
-        <div class="login-form">
-            <input type="text" id="username" placeholder="Username" class="form-input">
-            <input type="password" id="password" placeholder="Password" class="form-input">
-            <button onclick="login()" class="login-btn">Login</button>
-        </div>
-        
-        <p id="loginStatus"></p>
-    </div>
-
-    <!-- ATTENDANCE (QR Code Shows After Login) -->
-    <div id="attendance" class="section">
-        <h2>📱 QR Attendance Scanner</h2>
-        
-        <!-- QR CODE IMAGE (Hidden by default, shows after login) -->
-        <div id="qrDisplay" class="qr-display" style="display: none;">
-            <img src="qrcode_316690568_27a52eb8a845e2c7c523ef0d393fc094.png" alt="QR Code for Attendance" class="qr-image">
-            <p class="qr-instruction">Scan the QR code below to record attendance</p>
-        </div>
-        
-        <!-- QR SCANNER (Hidden by default, shows after login) -->
-        <div id="reader" style="display: none;"></div>
-        <p id="result">Scan Result:</p>
-        <img src="frame.png" alt="">
-    </div>
+    </main>
 
     <!-- Link to external JavaScript file -->
     <script src="js/script.js"></script>
-
 </body>
 </html>
